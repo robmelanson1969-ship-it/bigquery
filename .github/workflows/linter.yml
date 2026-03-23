@@ -26,6 +26,8 @@ jobs:
             github.event_name != 'workflow_dispatch' &&
             startsWith(github.event.pull_request.title,'Bump super-linter/super-linter') != true
         run: |
+          echo "::debug::Event name: ${{ github.event_name }}"
+          echo "::debug::PR title: ${{ github.event.pull_request.title }}"
           echo "::notice::Only linting changed files (not a manual run or super-linter bump)"
           echo "VALIDATE_ALL_CODEBASE=false" >> $GITHUB_ENV
       - name: Lint Code Base
